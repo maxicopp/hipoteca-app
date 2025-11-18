@@ -1,5 +1,5 @@
 {
-  "deudaInicial": 15000,
+  "deudaInicial": 14750,
   "pagos": [
     { "fecha": "26/09", "monto": 500 },
     { "fecha": "18/11", "monto": 450 }
