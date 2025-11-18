@@ -7,7 +7,7 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("/src/data/hipoteca.json")
+    fetch("/hipoteca.json")
       .then((res) => res.json())
       .then(setData);
   }, []);
