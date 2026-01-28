@@ -14,6 +14,16 @@ const formatoARS = (valor) =>
 const HipotecaCard = ({ deudaInicial, pagos }) => {
   const totalPagos = pagos.reduce((acc, pago) => acc + pago.monto, 0);
   const pendiente = deudaInicial - totalPagos;
+  // Ordenar pagos de más reciente a más viejo (por fecha dd/mm)
+  const pagosOrdenados = [...pagos].sort((a, b) => {
+    // Soporta formato dd/mm/yyyy
+    const [da, ma, ya] = a.fecha.split("/").map(Number);
+    const [db, mb, yb] = b.fecha.split("/").map(Number);
+    // Compara por año, luego mes, luego día (mayor primero)
+    if (yb !== ya) return yb - ya;
+    if (mb !== ma) return mb - ma;
+    return db - da;
+  });
   return (
     <div className="hipoteca-card hipoteca-card-modern">
       <div className="hipoteca-header">
@@ -38,7 +48,7 @@ const HipotecaCard = ({ deudaInicial, pagos }) => {
       </div>
       <h3 className="pagos-title">Pagos recibidos</h3>
       <div className="pagos-list">
-        {pagos.map((pago, idx) => (
+        {pagosOrdenados.map((pago, idx) => (
           <div className="pago-item pago-item-modern" key={idx}>
             <span className="fecha">{pago.fecha}</span>
             <span className="monto">{formatoARS(pago.monto)}</span>
