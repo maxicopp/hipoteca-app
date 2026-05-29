@@ -70,9 +70,9 @@ const Dashboard = ({ deudaInicial, pagos }) => {
       {/* KPIs */}
       <section className="kpi-grid">
         <div className="kpi-card">
-          <span className="kpi-label">Deuda inicial</span>
+          <span className="kpi-label">Monto acordado</span>
           <span className="kpi-value primary">{formatARS(deudaInicial)}</span>
-          <span className="kpi-sub">Capital original</span>
+          <span className="kpi-sub">Monto total del acuerdo</span>
         </div>
 
         <div className="kpi-card">
