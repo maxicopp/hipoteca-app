@@ -30,14 +30,14 @@ const CustomTooltip = ({ active, payload, label }) => {
       boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
     }}>
       <p style={{ color: "#94a3b8", marginBottom: 4, fontWeight: 600 }}>{label}</p>
-      <p style={{ color: "#22c55e", fontWeight: 700 }}>
+      <p style={{ color: "#38bdf8", fontWeight: 700 }}>
         {formatARS(payload[0].value)}
       </p>
     </div>
   );
 };
 
-const COLORS = ["#0ea5e9", "#38bdf8", "#7dd3fc", "#bae6fd", "#38bdf8", "#0ea5e9"];
+const COLORS = ["#0369a1", "#0284c7", "#0ea5e9", "#38bdf8", "#0ea5e9", "#0284c7"];
 
 const PaymentsBarChart = ({ data }) => {
   // Clamp bar width: wide with few payments, narrow with many

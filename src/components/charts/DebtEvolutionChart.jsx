@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         Saldo: {formatARS(payload[0].value)}
       </p>
       {payload[0].payload.pago > 0 && (
-        <p style={{ color: "#22c55e", fontWeight: 600, marginTop: 2 }}>
+        <p style={{ color: "#f1f5f9", fontWeight: 600, marginTop: 2 }}>
           Pago: {formatARS(payload[0].payload.pago)}
         </p>
       )}

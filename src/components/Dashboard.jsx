@@ -71,14 +71,14 @@ const Dashboard = ({ deudaInicial, pagos }) => {
       <section className="kpi-grid">
         <div className="kpi-card">
           <span className="kpi-label">Monto acordado</span>
-          <span className="kpi-value primary">{formatARS(deudaInicial)}</span>
-          <span className="kpi-sub">Monto total del acuerdo</span>
+          <span className="kpi-value muted">{formatARS(deudaInicial)}</span>
+          <span className="kpi-sub">Capital de referencia</span>
         </div>
 
         <div className="kpi-card">
           <span className="kpi-label">Total pagado</span>
-          <span className="kpi-value success">{formatARS(totalPagado)}</span>
-          <span className="kpi-sub">{pagosOrdenados.length} pagos realizados</span>
+          <span className="kpi-value primary">{formatARS(totalPagado)}</span>
+          <span className="kpi-sub">{pagosOrdenados.length} {pagosOrdenados.length === 1 ? "pago realizado" : "pagos realizados"}</span>
           <div className="kpi-progress-bar">
             <div className="kpi-progress-fill" style={{ width: `${progreso}%` }} />
           </div>
@@ -86,7 +86,7 @@ const Dashboard = ({ deudaInicial, pagos }) => {
 
         <div className="kpi-card">
           <span className="kpi-label">Por cancelar</span>
-          <span className="kpi-value">{formatARS(pendiente)}</span>
+          <span className="kpi-value muted">{formatARS(pendiente)}</span>
           <span className="kpi-sub">{progreso.toFixed(1)}% completado</span>
         </div>
       </section>
