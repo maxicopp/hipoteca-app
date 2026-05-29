@@ -62,9 +62,9 @@ const PaymentsPieChart = ({ pagado, pendiente }) => {
       pct: ((pagado / total) * 100).toFixed(1),
     },
     {
-      name: "Pendiente",
+      name: "Por cancelar",
       value: pendiente,
-      color: "#f43f5e",
+      color: "#0ea5e9",
       pct: ((pendiente / total) * 100).toFixed(1),
     },
   ];

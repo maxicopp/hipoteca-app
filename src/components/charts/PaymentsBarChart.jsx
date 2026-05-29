@@ -37,7 +37,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-const COLORS = ["#6366f1", "#818cf8", "#a5b4fc", "#c7d2fe", "#818cf8", "#6366f1"];
+const COLORS = ["#0ea5e9", "#38bdf8", "#7dd3fc", "#bae6fd", "#38bdf8", "#0ea5e9"];
 
 const PaymentsBarChart = ({ data }) => {
   // Clamp bar width: wide with few payments, narrow with many

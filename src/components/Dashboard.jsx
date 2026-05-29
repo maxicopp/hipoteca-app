@@ -86,7 +86,7 @@ const Dashboard = ({ deudaInicial, pagos }) => {
 
         <div className="kpi-card">
           <span className="kpi-label">Por cancelar</span>
-          <span className="kpi-value danger">{formatARS(pendiente)}</span>
+          <span className="kpi-value">{formatARS(pendiente)}</span>
           <span className="kpi-sub">{progreso.toFixed(1)}% completado</span>
         </div>
       </section>
