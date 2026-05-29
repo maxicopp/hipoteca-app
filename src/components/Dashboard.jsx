@@ -85,9 +85,9 @@ const Dashboard = ({ deudaInicial, pagos }) => {
         </div>
 
         <div className="kpi-card">
-          <span className="kpi-label">Saldo pendiente</span>
+          <span className="kpi-label">Por cancelar</span>
           <span className="kpi-value danger">{formatARS(pendiente)}</span>
-          <span className="kpi-sub">{progreso.toFixed(1)}% cancelado</span>
+          <span className="kpi-sub">{progreso.toFixed(1)}% completado</span>
         </div>
       </section>
 
@@ -96,7 +96,7 @@ const Dashboard = ({ deudaInicial, pagos }) => {
         <div className="chart-card full-width">
           <div>
             <p className="chart-title">Evolución del saldo</p>
-            <p className="chart-subtitle">Deuda restante después de cada pago</p>
+            <p className="chart-subtitle">Saldo restante después de cada pago</p>
           </div>
           <DebtEvolutionChart data={saldoSeries} deudaInicial={deudaInicial} />
         </div>
@@ -111,7 +111,7 @@ const Dashboard = ({ deudaInicial, pagos }) => {
 
         <div className="chart-card">
           <div>
-            <p className="chart-title">Composición de la deuda</p>
+            <p className="chart-title">Avance del acuerdo</p>
             <p className="chart-subtitle">Pagado vs. pendiente</p>
           </div>
           <PaymentsPieChart pagado={totalPagado} pendiente={pendiente} />
