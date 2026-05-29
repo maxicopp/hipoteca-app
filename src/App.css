@@ -1,46 +1,361 @@
-
-/* Fondo responsivo para toda la app */
-.app-bg-responsive {
+.app-layout {
   min-height: 100vh;
-  width: 100vw;
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(244,63,94,0.07) 0%, transparent 50%);
+  padding: 2rem 1rem 4rem;
+}
+
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Header ── */
+.app-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #f3f4f8 60%, #e9eaf3 100%);
+  gap: 1rem;
+  padding: 0.5rem 0 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+  flex-shrink: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.header-text h1 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.header-text p {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ── KPI Grid ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.kpi-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  min-width: 0; /* prevent grid blowout with long values */
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.kpi-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.kpi-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-text);
+  word-break: break-word;
+  min-width: 0;
+}
+
+.kpi-value.danger  { color: var(--color-danger); }
+.kpi-value.success { color: var(--color-success); }
+.kpi-value.primary { color: var(--color-primary-light); }
+
+.kpi-sub {
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  margin-top: 2px;
+}
+
+.kpi-progress-bar {
+  height: 4px;
+  background: var(--color-surface-2);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.kpi-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Charts Grid ── */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.chart-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chart-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.chart-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+
+.chart-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+/* ── Payments Table ── */
+.payments-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.payments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.4rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.payments-header h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.payments-count {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+.payments-table {
+  width: 100%;
+}
+
+.payments-table-head {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1.5fr;
+  padding: 0.6rem 1.4rem;
+  background: var(--color-surface-2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-subtle);
+}
+
+/* Scrollable body — shows ~8 rows, scrolls beyond that */
+.payments-table-body {
+  max-height: 420px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-2) transparent;
+}
+
+.payments-table-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.payments-table-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.payments-table-body::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: 99px;
+}
+
+.payment-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1.5fr;
+  padding: 0.85rem 1.4rem;
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+  transition: background var(--transition);
+}
+
+.payment-row:last-child {
+  border-bottom: none;
+}
+
+.payment-row:hover {
+  background: var(--color-surface-2);
+}
+
+.payment-num {
+  font-size: 0.78rem;
+  color: var(--color-text-subtle);
+  font-weight: 500;
+}
+
+.payment-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.payment-amount {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-success);
+}
+
+.payment-balance {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.payment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 99px;
+  background: rgba(34,197,94,0.12);
+  color: var(--color-success);
+}
+
+/* ── Footer note ── */
+.app-footer {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--color-text-subtle);
+  padding-top: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .app-layout {
+    padding: 1.25rem 0.75rem 3rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .kpi-grid .kpi-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .kpi-value {
+    font-size: 1.3rem;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card.full-width {
+    grid-column: 1;
+  }
+
+  /* Ocultar solo el # en tablet, mostrar fecha + monto + saldo */
+  .payments-table-head,
+  .payment-row {
+    grid-template-columns: 1.8fr 1.2fr 1.5fr;
+    padding: 0.75rem 1rem;
+  }
+
+  .payments-table-head > *:first-child,
+  .payment-row > *:first-child {
+    display: none;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 480px) {
+  .app-layout {
+    padding: 1rem 0.5rem 3rem;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .header-text h1 {
+    font-size: 1.15rem;
+  }
 
-.read-the-docs {
-  color: #888;
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid .kpi-card:last-child {
+    grid-column: 1;
+  }
+
+  .kpi-value {
+    font-size: 1.5rem;
+  }
+
+  /* En mobile mostrar las 3 columnas útiles: fecha, monto, saldo */
+  .payments-table-head,
+  .payment-row {
+    grid-template-columns: 1.6fr 1.1fr 1.3fr;
+    padding: 0.7rem 0.9rem;
+  }
+
+  /* Ocultar solo el # */
+  .payments-table-head > *:first-child,
+  .payment-row > *:first-child {
+    display: none;
+  }
+
+  .payment-date {
+    font-size: 0.8rem;
+  }
+
+  .payment-amount {
+    font-size: 0.82rem;
+  }
+
+  .payment-balance {
+    font-size: 0.8rem;
+  }
 }
