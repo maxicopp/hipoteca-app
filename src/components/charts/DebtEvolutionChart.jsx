@@ -46,12 +46,12 @@ const DebtEvolutionChart = ({ data, deudaInicial }) => {
   // Hide individual dots when there are many data points to avoid clutter
   const showDots = data.length <= 15;
 
-  // Show at most ~6 labels on the X axis regardless of data size
-  const xInterval = Math.max(0, Math.ceil(data.length / 6) - 1);
+  // Only start skipping labels when there are many points; up to ~12 show all
+  const xInterval = data.length <= 12 ? 0 : Math.max(0, Math.ceil(data.length / 6) - 1);
 
   return (
-    <ResponsiveContainer width="100%" height={220}>
-      <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+    <ResponsiveContainer width="100%" height={240}>
+      <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 28 }}>
         <defs>
           <linearGradient id="saldoGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.25} />
@@ -60,11 +60,12 @@ const DebtEvolutionChart = ({ data, deudaInicial }) => {
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
         <XAxis
-          dataKey="fecha"
-          tick={{ fill: "#475569", fontSize: 11 }}
+          dataKey="fechaCorta"
+          tick={{ fill: "#475569", fontSize: 11, angle: -40, textAnchor: "end", dy: 6 }}
           axisLine={false}
           tickLine={false}
           interval={xInterval}
+          height={48}
         />
         <YAxis
           tick={{ fill: "#475569", fontSize: 11 }}

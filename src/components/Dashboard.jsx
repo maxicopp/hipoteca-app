@@ -42,10 +42,13 @@ const Dashboard = ({ deudaInicial, pagos }) => {
   // Build running balance series for charts
   const saldoSeries = useMemo(() => {
     let saldo = deudaInicial;
-    const series = [{ fecha: "Inicio", saldo: deudaInicial, pago: 0 }];
+    const months = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+    const series = [{ fecha: "Inicio", fechaCorta: "Inicio", saldo: deudaInicial, pago: 0 }];
     pagosOrdenados.forEach((p) => {
       saldo -= p.monto;
-      series.push({ fecha: formatDate(p.fecha), saldo, pago: p.monto });
+      const [, m, y] = p.fecha.split("/");
+      const fechaCorta = `${months[parseInt(m) - 1]} ${y.slice(2)}`;
+      series.push({ fecha: formatDate(p.fecha), fechaCorta, saldo, pago: p.monto });
     });
     return series;
   }, [pagosOrdenados, deudaInicial]);

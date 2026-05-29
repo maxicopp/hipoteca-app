@@ -43,19 +43,20 @@ const PaymentsBarChart = ({ data }) => {
   // Clamp bar width: wide with few payments, narrow with many
   const barSize = Math.max(8, Math.min(28, Math.floor(300 / data.length)));
 
-  // Show at most ~8 labels on the X axis
-  const xInterval = Math.max(0, Math.ceil(data.length / 8) - 1);
+  // Only start skipping labels when there are many bars; up to ~12 show all
+  const xInterval = data.length <= 12 ? 0 : Math.max(0, Math.ceil(data.length / 8) - 1);
 
   return (
-    <ResponsiveContainer width="100%" height={200}>
-      <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} barSize={barSize}>
+    <ResponsiveContainer width="100%" height={220}>
+      <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 28 }} barSize={barSize}>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
         <XAxis
-          dataKey="fecha"
-          tick={{ fill: "#475569", fontSize: 11 }}
+          dataKey="fechaCorta"
+          tick={{ fill: "#475569", fontSize: 11, angle: -40, textAnchor: "end", dy: 6 }}
           axisLine={false}
           tickLine={false}
           interval={xInterval}
+          height={48}
         />
         <YAxis
           tick={{ fill: "#475569", fontSize: 11 }}
